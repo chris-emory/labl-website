@@ -34,18 +34,70 @@ export default function Navbar() {
       }`}
     >
       <nav className="flex flex-wrap items-center justify-between mx-auto max-w-[95%] sm:max-w-7xl px-4 sm:px-6 py-3 sm:py-4">
-        {/* === Logo Section === */}
-        <Link href="/" className="flex items-center gap-2 group flex-shrink-0">
-          <Image
-            src="/labl-logo.png"
-            alt="Language Biomarker Lab logo"
-            width={38}
-            height={38}
-            className="rounded-md transition-transform duration-300 group-hover:scale-110"
-          />
-          <span className="text-2xl font-bold text-gray-900 group-hover:text-indigo-600 transition-colors duration-300">
+        {/* === Elegant Shining Logo Section === */}
+        <Link href="/" className="relative flex items-center gap-2 group flex-shrink-0">
+          <div className="relative flex items-center justify-center">
+            {/* Smooth pulsing ring glow */}
+            <motion.div
+              className="absolute w-12 h-12 rounded-full bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 opacity-30 blur-md"
+              animate={{
+                scale: [1, 1.08, 1],
+                opacity: [0.2, 0.35, 0.2],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+
+            {/* Logo with light shimmer */}
+            <div className="relative overflow-hidden rounded-md shadow-sm">
+              <Image
+                src="/labl-logo.png"
+                alt="Language Biomarker Lab logo"
+                width={42}
+                height={42}
+                className="rounded-md transition-transform duration-300 group-hover:scale-105"
+              />
+              {/* Light sweep shimmer */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
+                animate={{
+                  x: ["-150%", "150%"],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+            </div>
+          </div>
+
+          {/* === LaBL Text with synchronized shimmer === */}
+          <motion.span
+            className="relative text-2xl font-extrabold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"
+            animate={{
+              backgroundPositionX: ["0%", "100%"],
+              opacity: [1, 0.95, 1],
+              textShadow: [
+                "0px 0px 0px rgba(147,51,234,0)",
+                "0px 0px 8px rgba(147,51,234,0.4)",
+                "0px 0px 0px rgba(147,51,234,0)",
+              ],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            style={{
+              backgroundSize: "200% 200%",
+            }}
+          >
             LaBL
-          </span>
+          </motion.span>
         </Link>
 
         {/* === Menu Items === */}
