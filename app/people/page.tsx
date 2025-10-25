@@ -1,11 +1,14 @@
+"use client";
+import TeamHero from "./components/TeamHero";
+import TeamGallery from "./components/TeamGallery";
+import TeamGrid from "./components/TeamGrid";
+
 export default function PeoplePage() {
   return (
-    <main className="min-h-screen bg-white px-8 py-16">
-      <h1 className="text-4xl font-bold mb-6 text-gray-900">People</h1>
-      <p className="text-lg text-gray-600 leading-relaxed max-w-3xl">
-        Meet the researchers, students, and collaborators behind the Language
-        Biomarker Lab (LaBL).
-      </p>
+    <main className="relative min-h-screen bg-gradient-to-b from-white via-indigo-50/30 to-purple-50/30 overflow-hidden">
+      <TeamHero />
+      <TeamGallery />
+      <TeamGrid />
     </main>
   );
 }
