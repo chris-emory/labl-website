@@ -33,33 +33,33 @@ export default function Navbar() {
           : "bg-white/70 backdrop-blur-sm border-b border-transparent"
       }`}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <nav className="flex flex-wrap items-center justify-between mx-auto max-w-[95%] sm:max-w-7xl px-4 sm:px-6 py-3 sm:py-4">
         {/* === Logo Section === */}
-        <Link href="/" className="flex items-center gap-2 group">
+        <Link href="/" className="flex items-center gap-2 group flex-shrink-0">
           <Image
             src="/labl-logo.png"
             alt="Language Biomarker Lab logo"
-            width={36}
-            height={36}
+            width={38}
+            height={38}
             className="rounded-md transition-transform duration-300 group-hover:scale-110"
           />
-          <span className="text-xl font-bold text-gray-900 group-hover:text-indigo-600 transition-colors duration-300">
+          <span className="text-2xl font-bold text-gray-900 group-hover:text-indigo-600 transition-colors duration-300">
             LaBL
           </span>
         </Link>
 
         {/* === Menu Items === */}
-        <div className="hidden md:flex space-x-8 text-sm font-medium">
+        <div className="flex flex-wrap justify-end gap-x-6 gap-y-2 mt-3 sm:mt-0 text-[0.95rem] font-semibold tracking-wide">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`relative transition-colors duration-300 ${
+                className={`relative transition-all duration-300 ${
                   isActive
-                    ? "text-indigo-600"
-                    : "text-gray-700 hover:text-indigo-600"
+                    ? "text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 scale-105"
+                    : "text-gray-800 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-indigo-600 hover:via-purple-600 hover:to-pink-600 hover:scale-105"
                 }`}
               >
                 {item.name}
@@ -76,7 +76,7 @@ export default function Navbar() {
       </nav>
 
       {/* Decorative gradient line */}
-      <div className="h-[3px] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-60" />
+      <div className="h-[3px] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-70" />
     </header>
   );
 }
