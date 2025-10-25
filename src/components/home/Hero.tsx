@@ -9,7 +9,7 @@ export default function Hero() {
   if (!mounted) return null;
 
   return (
-    <section className="relative flex flex-col-reverse md:flex-row items-center justify-between w-full min-h-[95vh] px-6 md:px-20 py-16 overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-blue-100">
+    <section className="relative flex flex-col md:flex-row items-center justify-center w-full min-h-[90vh] px-6 md:px-24 py-16 overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-blue-100">
       {/* === Soft Particle Background === */}
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(25)].map((_, i) => (
@@ -125,21 +125,16 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* === Right Image (Head Logo with Depth) === */}
-        <motion.div
-        initial={{ opacity: 0, x: 80 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.4, duration: 1 }}
-        className="relative z-10 flex justify-center md:justify-end w-full md:w-1/2"
-        >
+      {/* === Right Image (Head Logo Static) === */}
+      <div className="relative z-10 flex justify-center md:justify-end w-full md:w-[50%] max-w-[550px] mt-10 md:mt-0">
         <Image
-            src="/labl-logo.png"
-            alt="LaBL Symbol"
-            width={420}
-            height={420}
-            className="rounded-xl drop-shadow-2xl border border-indigo-200 shadow-[0_0_25px_rgba(99,102,241,0.3)]"
+          src="/labl-logo.png"
+          alt="LaBL Symbol"
+          width={460}
+          height={460}
+          className="rounded-xl drop-shadow-2xl border border-indigo-200 shadow-[0_0_25px_rgba(99,102,241,0.35)]"
         />
-        </motion.div>
+      </div>
 
       {/* === Gradient Overlay for Depth === */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-indigo-50/70 pointer-events-none" />
