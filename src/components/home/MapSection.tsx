@@ -84,13 +84,13 @@ export default function MapSection() {
             </div>
 
             <motion.a
-              href="https://psychology.emory.edu/home/"
+              href="https://www.emory.edu/home/index.html"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               className="inline-block bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-full font-semibold shadow-md hover:shadow-xl transition"
             >
-              Visit Department →
+              Visit Emory →
             </motion.a>
           </div>
         </motion.div>
