@@ -7,7 +7,7 @@ export const people = [
   {
     name: "Christopher Walsh",
     role: "Senior Software Engineer",
-    image: "/people/christopher.jpg",
+    image: "/people/christopher.png",
   },
   {
     name: "Annie He",
