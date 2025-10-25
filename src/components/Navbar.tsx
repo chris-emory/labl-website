@@ -10,7 +10,6 @@ const navItems = [
   { name: "Presentations", href: "/presentations" },
   { name: "People", href: "/people" },
   { name: "Job Posting", href: "/jobs" },
-  { name: "Get Involved", href: "/get-involved" },
 ];
 
 export default function Navbar() {
