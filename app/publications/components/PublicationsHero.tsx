@@ -62,6 +62,32 @@ export default function PublicationsHero() {
               className="rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300"
             />
           </motion.div>
+
+          <motion.div
+            animate={{ y: [0, -12, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Image
+              src="/LaBL-brain.jpg"
+              alt="Publication Art 1"
+              width={320}
+              height={320}
+              className="rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300"
+            />
+          </motion.div>
+
+          <motion.div
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Image
+              src="/LaBL-ball.jpg"
+              alt="Publication Art 2"
+              width={380}
+              height={320}
+              className="rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300"
+            />
+          </motion.div>
         </div>
 
         {/* Decorative Divider */}
