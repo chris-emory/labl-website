@@ -102,7 +102,7 @@ export default function Hero() {
           className="relative z-10"
         >
           <Image
-            src="/labl-full-logo.png"
+            src="/LaBL-a.jpg"
             alt="LaBL Full Logo"
             width={260}
             height={120}

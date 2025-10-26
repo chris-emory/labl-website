@@ -70,7 +70,7 @@ export default function MetaphorSection() {
         >
           <div className="absolute inset-0 blur-3xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-50 rounded-2xl"></div>
           <Image
-            src="/labl-logo.png"
+            src="/LaBL-Full.jpg"
             alt="LaBL Symbol"
             width={400}
             height={400}
