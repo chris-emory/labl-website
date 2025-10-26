@@ -9,15 +9,16 @@ export default function Footer() {
   const [particles, setParticles] = useState<
     { width: number; height: number; top: string; left: string }[]
   >([]);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
-  // Mouse tracking
+  // Mouse tracking for halo
   useEffect(() => {
     const move = (e: MouseEvent) => setMouse({ x: e.clientX, y: e.clientY });
     window.addEventListener("mousemove", move);
     return () => window.removeEventListener("mousemove", move);
   }, []);
 
-  // Generate particles only on client to avoid SSR mismatch
+  // Generate floating particles (client only)
   useEffect(() => {
     const arr = Array.from({ length: 30 }, () => ({
       width: Math.random() * 3 + 1,
@@ -28,9 +29,17 @@ export default function Footer() {
     setParticles(arr);
   }, []);
 
+  // Handle card tilt effect
+  const handleTilt = (e: React.MouseEvent<HTMLDivElement>) => {
+    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - left) / width - 0.5) * 20;
+    const y = ((e.clientY - top) / height - 0.5) * -20;
+    setTilt({ x, y });
+  };
+
   return (
     <footer className="relative overflow-hidden bg-gradient-to-b from-[#0a0323] via-[#110a3a] to-[#1c0e54] text-gray-200 py-24">
-      {/* === Aurora Background Waves === */}
+      {/* === Aurora Gradient Waves === */}
       <motion.div
         className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-indigo-700/40 via-purple-700/20 to-transparent blur-3xl"
         animate={{
@@ -55,7 +64,7 @@ export default function Footer() {
         transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* === Floating Stars / Particles (hydration-safe) === */}
+      {/* === Floating Particles === */}
       {particles.map((p, i) => (
         <motion.div
           key={i}
@@ -79,6 +88,7 @@ export default function Footer() {
         />
       ))}
 
+      {/* === Main Content === */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-14">
         {/* === Left: Map === */}
         <motion.div
@@ -96,12 +106,11 @@ export default function Footer() {
             allowFullScreen
             className="rounded-3xl"
           ></iframe>
-          {/* Glow reflection */}
+
+          {/* Soft glow layer (click-through) */}
           <motion.div
-            className="absolute inset-0 bg-gradient-to-t from-indigo-400/10 via-transparent to-transparent"
-            animate={{
-              opacity: [0.2, 0.4, 0.2],
-            }}
+            className="absolute inset-0 bg-gradient-to-t from-indigo-400/10 via-transparent to-transparent pointer-events-none"
+            animate={{ opacity: [0.2, 0.4, 0.2] }}
             transition={{ duration: 4, repeat: Infinity }}
           />
         </motion.div>
@@ -159,12 +168,16 @@ export default function Footer() {
           </div>
         </motion.div>
 
-        {/* === Right: Visit Card === */}
+        {/* === Right: Visit Card (tilt + hover glow) === */}
         <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
+          onMouseMove={handleTilt}
+          onMouseLeave={() => setTilt({ x: 0, y: 0 })}
+          animate={{ rotateX: tilt.y, rotateY: tilt.x }}
+          transition={{ type: "spring", stiffness: 100, damping: 15 }}
+          whileHover={{
+            scale: 1.03,
+            boxShadow: "0 0 60px rgba(168,85,247,0.4)",
+          }}
           className="w-full md:w-1/3 relative p-[2px] rounded-3xl bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-500 shadow-2xl"
         >
           <div className="bg-[#0c0530]/80 backdrop-blur-xl rounded-3xl p-8 h-full">
