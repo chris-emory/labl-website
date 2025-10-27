@@ -114,37 +114,55 @@ export default function TeamGrid() {
             <motion.div
               layoutId={selected.name}
               onClick={(e) => e.stopPropagation()}
-              className="relative bg-white rounded-3xl shadow-2xl overflow-hidden w-[90%] md:w-[600px] max-w-lg p-8 text-center"
+              className="relative bg-white rounded-3xl shadow-2xl overflow-hidden w-[95%] md:w-[1100px] max-w-6xl p-10 flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-12"
             >
-              <Image
-                src={selected.image}
-                alt={selected.name}
-                width={400}
-                height={400}
-                className="mx-auto rounded-full w-48 h-48 object-cover border-4 border-indigo-300"
-              />
-              <h2 className="mt-6 text-2xl font-bold text-gray-800">
-                {selected.name}
-              </h2>
-              <p className="text-gray-600 mt-2">{selected.role}</p>
+              {/* === Huge Photo Section === */}
+              <div className="relative flex-shrink-0 mx-auto md:mx-0">
+                {/* Soft gradient glow aura */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(147,51,234,0.35)_0%,transparent_70%)] blur-3xl opacity-70 scale-110"></div>
 
-              {selected.bio && (
-                <p className="mt-4 text-gray-700 text-sm leading-relaxed">
-                  {selected.bio}
-                </p>
-              )}
-              {selected.research && (
-                <p className="mt-3 text-sm text-indigo-700 font-medium">
-                  <strong>Research Interests:</strong> {selected.research}
-                </p>
-              )}
+                <Image
+                  src={selected.image}
+                  alt={selected.name}
+                  width={800}
+                  height={800}
+                  className="relative z-10 rounded-full w-[28rem] h-[28rem] md:w-[30rem] md:h-[30rem] object-cover border-8 border-indigo-200 shadow-2xl"
+                />
+              </div>
 
-              {/* Close Button */}
+              {/* === Text Content Section === */}
+              <div className="flex-1">
+                <h2 className="text-4xl font-bold text-gray-800">{selected.name}</h2>
+                <p className="text-gray-600 mt-3 text-xl">{selected.role}</p>
+
+                {selected.bio && (
+                  <p className="mt-8 text-gray-700 text-lg leading-relaxed">{selected.bio}</p>
+                )}
+
+                {selected.research && (
+                  <p className="mt-5 text-base text-indigo-700 font-medium">
+                    <strong>Research Interests:</strong> {selected.research}
+                  </p>
+                )}
+
+                {selected.linkedin && (
+                  <a
+                    href={selected.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block mt-8 text-indigo-500 hover:text-indigo-700 font-semibold underline text-lg"
+                  >
+                    View LinkedIn →
+                  </a>
+                )}
+              </div>
+
+              {/* === Close Button === */}
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setSelected(null)}
-                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl"
+                className="absolute top-6 right-6 text-gray-400 hover:text-gray-600 text-3xl"
               >
                 ✕
               </motion.button>
