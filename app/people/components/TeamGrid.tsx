@@ -114,52 +114,103 @@ export default function TeamGrid() {
             <motion.div
               layoutId={selected.name}
               onClick={(e) => e.stopPropagation()}
-              className="relative bg-white rounded-3xl shadow-2xl overflow-hidden w-[95%] md:w-[1100px] max-w-6xl p-10 flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-12"
+              className="relative bg-gradient-to-br from-white/90 via-white/80 to-indigo-50/60 backdrop-blur-2xl rounded-3xl shadow-[0_8px_60px_rgba(99,102,241,0.15)] overflow-hidden w-[95%] md:w-[1200px] max-w-7xl p-12 flex flex-col md:flex-row items-center md:items-start gap-16 border border-white/40"
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              {/* === Huge Photo Section === */}
-              <div className="relative flex-shrink-0 mx-auto md:mx-0">
-                {/* Soft gradient glow aura */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(147,51,234,0.35)_0%,transparent_70%)] blur-3xl opacity-70 scale-110"></div>
+              {/* === LEFT: Dynamic Image === */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="relative flex-shrink-0"
+              >
+                {/* Outer gradient halo */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-pink-400 via-purple-500 to-indigo-500 blur-3xl opacity-50 animate-pulse-slow"></div>
 
-                <Image
-                  src={selected.image}
-                  alt={selected.name}
-                  width={800}
-                  height={800}
-                  className="relative z-10 rounded-full w-[28rem] h-[28rem] md:w-[30rem] md:h-[30rem] object-cover border-8 border-indigo-200 shadow-2xl"
-                />
-              </div>
+                {/* Circular frame with glow */}
+                <div className="relative rounded-full p-[6px] bg-gradient-to-tr from-indigo-400 via-purple-500 to-pink-500 shadow-[0_0_40px_rgba(147,51,234,0.4)]">
+                  <div className="rounded-full overflow-hidden bg-white shadow-2xl">
+                    <motion.img
+                      src={selected.image}
+                      alt={selected.name}
+                      className="w-[34rem] h-[34rem] object-cover rounded-full"
+                      initial={{ scale: 0.95 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 1.2, ease: "easeInOut" }}
+                    />
+                  </div>
+                </div>
+              </motion.div>
 
-              {/* === Text Content Section === */}
-              <div className="flex-1">
-                <h2 className="text-4xl font-bold text-gray-800">{selected.name}</h2>
-                <p className="text-gray-600 mt-3 text-xl">{selected.role}</p>
+              {/* === RIGHT: Text Content === */}
+              <motion.div
+                initial={{ opacity: 0, x: 60 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="flex-1 relative"
+              >
+                {/* Animated gradient underline accent */}
+                <div className="absolute -top-2 left-0 w-32 h-[4px] bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-500 rounded-full animate-gradient-x"></div>
 
+                {/* Name */}
+                <h2 className="text-6xl font-extrabold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text text-transparent drop-shadow-[0_2px_8px_rgba(147,51,234,0.3)] tracking-tight leading-tight mb-3">
+                  {selected.name}
+                </h2>
+
+                {/* Role */}
+                <div className="inline-block bg-gradient-to-r from-indigo-100 via-white to-pink-100 rounded-full px-6 py-2 shadow-inner mb-8">
+                  <p className="text-indigo-700 text-lg font-semibold tracking-wide uppercase">
+                    {selected.role}
+                  </p>
+                </div>
+
+                {/* Bio */}
                 {selected.bio && (
-                  <p className="mt-8 text-gray-700 text-lg leading-relaxed">{selected.bio}</p>
-                )}
-
-                {selected.research && (
-                  <p className="mt-5 text-base text-indigo-700 font-medium">
-                    <strong>Research Interests:</strong> {selected.research}
+                  <p className="text-gray-800/90 text-lg leading-relaxed font-light mb-10">
+                    {selected.bio}
                   </p>
                 )}
 
-                {selected.linkedin && (
-                  <a
-                    href={selected.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block mt-8 text-indigo-500 hover:text-indigo-700 font-semibold underline text-lg"
-                  >
-                    View LinkedIn →
-                  </a>
+                {/* Research Interests */}
+                {selected.research && (
+                  <div className="relative pl-6 border-l-[3px] border-gradient-to-b from-indigo-400 to-pink-400">
+                    <h3 className="text-xl font-bold text-purple-700 mb-3 tracking-wider">
+                      Research Interests
+                    </h3>
+                    <p className="text-gray-700 text-base leading-relaxed italic">
+                      {selected.research}
+                    </p>
+                  </div>
                 )}
-              </div>
 
-              {/* === Close Button === */}
+                {/* Optional LinkedIn */}
+                {selected.linkedin && (
+                  <div className="mt-12">
+                    <a
+                      href={selected.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-3 px-8 py-3 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white rounded-full text-lg font-semibold shadow-lg hover:shadow-xl hover:scale-105 transform transition-all duration-500"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        className="w-6 h-6"
+                      >
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.762 2.239 5 5 5h14c2.761 0 5-2.238 5-5v-14c0-2.761-2.239-5-5-5zm-11.334 20h-2.666v-10h2.666v10zm-1.333-11.458c-.854 0-1.547-.693-1.547-1.547s.693-1.547 1.547-1.547 1.547.693 1.547 1.547-.693 1.547-1.547 1.547zm12.667 11.458h-2.666v-5.334c0-1.271-.025-2.904-1.771-2.904-1.771 0-2.043 1.385-2.043 2.813v5.425h-2.666v-10h2.561v1.366h.036c.357-.675 1.229-1.386 2.531-1.386 2.71 0 3.209 1.783 3.209 4.101v5.919z" />
+                      </svg>
+                      Connect on LinkedIn
+                    </a>
+                  </div>
+                )}
+              </motion.div>
+
+              {/* Close Button */}
               <motion.button
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setSelected(null)}
                 className="absolute top-6 right-6 text-gray-400 hover:text-gray-600 text-3xl"
