@@ -1,10 +1,12 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 import { people } from "../peopleData";
 
 export default function TeamGrid() {
+  const [selected, setSelected] = useState<any>(null);
+
   const director = people.find((p) => p.group === "director");
   const faculty = people.filter((p) => p.group === "faculty");
   const phd = people.filter((p) => p.group === "phd");
@@ -22,7 +24,12 @@ export default function TeamGrid() {
       </motion.h3>
       <div className="flex flex-wrap justify-center gap-16">
         {members.map((person, i) => (
-          <SmoothCard key={i} person={person} index={i} />
+          <SmoothCard
+            key={i}
+            person={person}
+            index={i}
+            onSelect={() => setSelected(person)}
+          />
         ))}
       </div>
     </div>
@@ -50,12 +57,12 @@ export default function TeamGrid() {
         LaBL
       </h1>
 
-      {/* === Director (single spotlight) === */}
+      {/* === Director === */}
       {director && (
         <div className="relative z-10 mb-12 flex flex-col items-center">
-          <SmoothCard person={director} index={0} />
+          <SmoothCard person={director} index={0} onSelect={() => setSelected(director)} />
 
-          {/* ↓ Downward scroll indicator arrow */}
+          {/* ↓ Downward scroll indicator */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 0.8, y: 0 }}
@@ -93,24 +100,78 @@ export default function TeamGrid() {
           <Section title="Undergraduate Researchers" members={undergrad} />
         )}
       </div>
+
+      {/* === Expanded Profile Modal === */}
+      <AnimatePresence>
+        {selected && (
+          <motion.div
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelected(null)}
+          >
+            <motion.div
+              layoutId={selected.name}
+              onClick={(e) => e.stopPropagation()}
+              className="relative bg-white rounded-3xl shadow-2xl overflow-hidden w-[90%] md:w-[600px] max-w-lg p-8 text-center"
+            >
+              <Image
+                src={selected.image}
+                alt={selected.name}
+                width={400}
+                height={400}
+                className="mx-auto rounded-full w-48 h-48 object-cover border-4 border-indigo-300"
+              />
+              <h2 className="mt-6 text-2xl font-bold text-gray-800">
+                {selected.name}
+              </h2>
+              <p className="text-gray-600 mt-2">{selected.role}</p>
+
+              {selected.bio && (
+                <p className="mt-4 text-gray-700 text-sm leading-relaxed">
+                  {selected.bio}
+                </p>
+              )}
+              {selected.research && (
+                <p className="mt-3 text-sm text-indigo-700 font-medium">
+                  <strong>Research Interests:</strong> {selected.research}
+                </p>
+              )}
+
+              {/* Close Button */}
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setSelected(null)}
+                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl"
+              >
+                ✕
+              </motion.button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
 
 /* === Smooth morph card component === */
-function SmoothCard({ person, index }: any) {
+function SmoothCard({ person, index, onSelect }: any) {
   if (!person) return null;
   const [hovered, setHovered] = useState(false);
 
   return (
     <motion.div
       key={index}
+      layoutId={person.name}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.8 }}
-      className="flex flex-col items-center text-center group"
+      className="flex flex-col items-center text-center group cursor-pointer"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      onClick={onSelect}
     >
       {/* === Portrait === */}
       <motion.div
