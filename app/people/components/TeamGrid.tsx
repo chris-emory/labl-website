@@ -5,29 +5,93 @@ import { useState } from "react";
 import { people } from "../peopleData";
 
 export default function TeamGrid() {
-  return (
-    <section className="relative py-32 bg-gradient-to-b from-indigo-50 via-white to-purple-50 overflow-hidden">
-      {/* === Soft Background Glow === */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(147,51,234,0.12)_0%,transparent_70%)] blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(79,70,229,0.12)_0%,transparent_70%)] blur-3xl" />
-      </div>
+  const director = people.find((p) => p.group === "director");
+  const faculty = people.filter((p) => p.group === "faculty");
+  const phd = people.filter((p) => p.group === "phd");
+  const undergrad = people.filter((p) => p.group === "undergrad");
 
-      {/* === Title === */}
-      <motion.h2
+  const Section = ({ title, members }: { title: string; members: any[] }) => (
+    <div className="mt-20">
+      <motion.h3
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-4xl font-bold text-center text-gray-900 mb-16 relative z-10"
+        className="text-2xl font-semibold text-center text-indigo-700 mb-10"
       >
-        Meet the Team
-      </motion.h2>
-
-      {/* === Grid === */}
-      <div className="relative z-10 max-w-7xl mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-16 justify-items-center">
-        {people.map((person, i) => (
+        {title}
+      </motion.h3>
+      <div className="flex flex-wrap justify-center gap-16">
+        {members.map((person, i) => (
           <SmoothCard key={i} person={person} index={i} />
         ))}
+      </div>
+    </div>
+  );
+
+  return (
+    <section className="relative py-32 bg-gradient-to-b from-indigo-50 via-white to-purple-50 overflow-hidden">
+      {/* === Background Gradient Glow === */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(147,51,234,0.12)_0%,transparent_70%)] blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-[radial-gradient(circle,rgba(79,70,229,0.12)_0%,transparent_70%)] blur-3xl" />
+      </div>
+
+      {/* === Fixed Background “LaBL” Watermark === */}
+      <h1
+        className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+                  text-[16rem] md:text-[22rem] font-extrabold 
+                  text-indigo-200/25 tracking-[0.1em] select-none pointer-events-none 
+                  z-0"
+        style={{
+          lineHeight: "1",
+          userSelect: "none",
+        }}
+      >
+        LaBL
+      </h1>
+
+      {/* === Director (single spotlight) === */}
+      {director && (
+        <div className="relative z-10 mb-12 flex flex-col items-center">
+          <SmoothCard person={director} index={0} />
+
+          {/* ↓ Downward scroll indicator arrow */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 0.8, y: 0 }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              repeatType: "mirror",
+              ease: "easeInOut",
+            }}
+            className="mt-6 text-indigo-400"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.8}
+              stroke="currentColor"
+              className="w-7 h-7"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </motion.div>
+        </div>
+      )}
+
+      {/* === Groups === */}
+      <div className="relative z-10">
+        {faculty.length > 0 && (
+          <Section title="Faculty & Engineers" members={faculty} />
+        )}
+        {phd.length > 0 && (
+          <Section title="Doctoral Students" members={phd} />
+        )}
+        {undergrad.length > 0 && (
+          <Section title="Undergraduate Researchers" members={undergrad} />
+        )}
       </div>
     </section>
   );
@@ -35,6 +99,7 @@ export default function TeamGrid() {
 
 /* === Smooth morph card component === */
 function SmoothCard({ person, index }: any) {
+  if (!person) return null;
   const [hovered, setHovered] = useState(false);
 
   return (
