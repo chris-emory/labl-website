@@ -27,35 +27,44 @@ export default function PresentationsGrid() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1, duration: 0.8 }}
-              whileHover={{ scale: 1.03 }}
-              className="relative bg-white/70 backdrop-blur-xl border border-indigo-100 shadow-[0_0_25px_rgba(99,102,241,0.1)] hover:shadow-[0_0_40px_rgba(147,51,234,0.25)] transition-all duration-500 rounded-2xl p-8"
+              whileHover={{
+                y: -6,
+                boxShadow:
+                  "0 12px 40px rgba(147, 51, 234, 0.25), 0 6px 20px rgba(99, 102, 241, 0.15)",
+              }}
+              className="group relative bg-white/80 backdrop-blur-xl border border-indigo-100 shadow-[0_4px_20px_rgba(99,102,241,0.1)] transition-all duration-500 rounded-2xl p-8 cursor-default"
             >
+              {/* Hover Gradient Border Glow */}
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-indigo-400/20 via-purple-400/20 to-pink-400/20 pointer-events-none" />
+
               {/* Year Badge */}
               <div className="absolute -top-3 -right-3 bg-gradient-to-r from-indigo-500 to-pink-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-lg">
                 {p.year}
               </div>
 
-                {/* Conference Name */}
-                <h3 className="text-lg font-bold text-gray-900 mb-3">{p.conference}</h3>
+              {/* Conference Name */}
+              <h3 className="text-lg font-bold text-gray-900 mb-3">{p.conference}</h3>
 
-                {/* Type Badge */}
-                <span
+              {/* Type Badge */}
+              <span
                 className={`inline-block text-xs font-semibold px-3 py-1 mb-3 rounded-full tracking-wide shadow-sm ${
-                    p.type.includes("Poster")
+                  p.type.includes("Poster")
                     ? "bg-indigo-100 text-indigo-700"
                     : "bg-pink-100 text-pink-700"
                 }`}
-                >
+              >
                 {p.type}
-                </span>
+              </span>
 
-                {/* Title */}
-                <p className="text-indigo-700 font-medium mb-3">{p.title}</p>
+              {/* Title */}
+              <p className="text-indigo-700 font-medium mb-3 group-hover:text-indigo-800 transition-colors duration-300">
+                {p.title}
+              </p>
 
-                {/* Authors */}
-                <p className="text-gray-600 text-sm leading-relaxed">
+              {/* Authors */}
+              <p className="text-gray-600 text-sm leading-relaxed">
                 <strong>Authors:</strong> {p.authors}
-                </p>
+              </p>
             </motion.div>
           ))}
         </div>
