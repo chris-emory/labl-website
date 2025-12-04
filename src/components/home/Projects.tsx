@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import { motion } from "framer-motion";
 
 export default function Projects() {
   const projects = [
@@ -8,125 +7,69 @@ export default function Projects() {
       title: "ProNET (Psychosis Risk Outcomes Network)",
       image: "/project-pronet.png",
       description:
-        "A global NIH-funded initiative to better understand and prevent psychosis through multi-site language biomarker data and predictive modeling.",
+        "A global NIH-funded initiative using multi-site language biomarker data to better understand and predict psychosis risk.",
+      link: "https://reporter.nih.gov/project-details/10093852",
     },
     {
       title: "ANNA-PR (Automated Neural Network Assessment)",
       image: "/project-early.png",
       description:
-        "An AI-driven system automating the assessment of psychosis risk in youth populations using multimodal linguistic and cognitive features.",
+        "An AI-driven system automating psychosis risk assessment using multimodal linguistic and cognitive indicators.",
+      link: "#",
     },
     {
       title: "PReDICT (Predictive Remission Detection)",
       image: "/project-predict.png",
       description:
         "A generative-AI research initiative identifying language-based biomarkers of depression and treatment resistance.",
+      link: "#",
     },
   ];
 
   return (
-    <section className="relative py-36 overflow-hidden bg-gradient-to-br from-indigo-100 via-white to-purple-100">
-      {/* ==== Background Floating Lights ==== */}
-      <motion.div
-        className="absolute w-[700px] h-[700px] bg-gradient-to-br from-purple-300 via-pink-300 to-indigo-300 opacity-25 blur-3xl rounded-full top-[-200px] left-[-150px]"
-        animate={{ x: [0, 100, 0], y: [0, 80, 0] }}
-        transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute w-[600px] h-[600px] bg-gradient-to-br from-indigo-300 via-blue-300 to-purple-300 opacity-25 blur-3xl rounded-full bottom-[-180px] right-[-150px]"
-        animate={{ x: [0, -100, 0], y: [0, -60, 0] }}
-        transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-      />
+    <section className="relative py-28 bg-gradient-to-b from-[#eef2f7] via-[#f5f7fb] to-[#f3f6fa] border-t border-gray-200">
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
+        {/* Section Title */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Featured Research Projects
+          </h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Our current projects bring together neuroscience, linguistics, and
+            AI to uncover language-based insights into mental health.
+          </p>
+        </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-8 text-center">
-        {/* ==== Section Title ==== */}
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-6xl md:text-7xl font-extrabold mb-24 bg-gradient-to-r from-indigo-700 via-purple-700 to-pink-600 bg-clip-text text-transparent tracking-tight drop-shadow-sm"
-        >
-          Featured Research Projects
-        </motion.h2>
-
-        {/* ==== Projects Grid ==== */}
-        <div className="grid gap-16 md:grid-cols-3">
+        {/* Project Grid */}
+        <div className="grid gap-10 md:grid-cols-3">
           {projects.map((p, i) => (
-            <motion.div
+            <a
               key={i}
-              initial={{ opacity: 0, y: 40, rotateY: 10 }}
-              whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.25, duration: 0.9, ease: "easeOut" }}
-              whileHover={{
-                scale: 1.06,
-                rotateX: 5,
-                rotateY: -5,
-                boxShadow: "0 25px 60px rgba(139,92,246,0.3)",
-              }}
-              className="relative group rounded-3xl overflow-hidden border border-transparent bg-white/70 backdrop-blur-xl shadow-[0_0_25px_rgba(0,0,0,0.05)] hover:shadow-[0_0_50px_rgba(139,92,246,0.25)] transition-all duration-700"
+              href={p.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center rounded-2xl bg-white border border-gray-200 hover:border-[#607ea6] shadow-sm hover:shadow-md transition-all duration-300"
             >
-              {/* ==== Animated Gradient Frame ==== */}
-              <motion.div
-                className="absolute inset-0 bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-indigo-500 via-purple-400 to-pink-400 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-700"
-                animate={{ rotate: [0, 360] }}
-                transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-              />
-
-              <div className="relative z-10 flex flex-col items-center p-10 text-center">
-                {/* ==== Floating Image ==== */}
-                <motion.div
-                  whileHover={{
-                    y: -10,
-                    rotateX: 8,
-                    rotateY: -6,
-                    scale: 1.05,
-                  }}
-                  transition={{ duration: 0.4 }}
-                  className="relative mb-8"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-tr from-indigo-300/40 to-pink-300/40 blur-xl rounded-2xl"></div>
-                  <Image
-                    src={p.image}
-                    alt={p.title}
-                    width={200}
-                    height={200}
-                    className="relative z-10 object-contain drop-shadow-lg"
-                  />
-                </motion.div>
-
-                {/* ==== Glowing Title ==== */}
-                <h3 className="text-2xl font-bold text-gray-900 mb-4 leading-snug relative">
-                  <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text text-transparent">
-                    {p.title}
-                  </span>
-                  <div className="absolute -inset-x-4 bottom-0 h-[1px] bg-gradient-to-r from-transparent via-indigo-400 to-transparent opacity-40"></div>
+              <div className="w-full h-56 flex items-center justify-center bg-gradient-to-t from-[#e8edf5] to-white rounded-t-2xl border-b border-gray-100">
+                <Image
+                  src={p.image}
+                  alt={p.title}
+                  width={200}
+                  height={200}
+                  className="object-contain"
+                />
+              </div>
+              <div className="p-6 text-center">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-[#2e4a7d] transition-colors">
+                  {p.title}
                 </h3>
-
-                {/* ==== Description ==== */}
-                <p className="text-gray-700 text-sm leading-relaxed px-3">
+                <p className="text-gray-700 text-sm leading-relaxed">
                   {p.description}
                 </p>
               </div>
-            </motion.div>
+            </a>
           ))}
         </div>
-
-        {/* ==== CTA Button ==== */}
-        <motion.a
-          href="https://reporter.nih.gov/project-details/10093852"
-          target="_blank"
-          rel="noopener noreferrer"
-          whileHover={{
-            scale: 1.1,
-            textShadow: "0 0 40px rgba(255,255,255,0.8)",
-            boxShadow: "0 0 40px rgba(147,51,234,0.5)",
-          }}
-          whileTap={{ scale: 0.97 }}
-          className="inline-block mt-24 px-16 py-5 text-lg rounded-full bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 text-white font-semibold tracking-wide shadow-lg transition-all duration-500"
-        >
-          Explore Project Details →
-        </motion.a>
       </div>
     </section>
   );
