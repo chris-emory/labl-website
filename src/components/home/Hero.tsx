@@ -6,85 +6,72 @@ export default function Hero() {
     <section
       className="
         relative flex flex-col lg:flex-row items-center justify-between w-full
-        min-h-[70vh] sm:min-h-[75vh] md:min-h-[80vh] lg:min-h-[85vh]
-        px-4 sm:px-8 md:px-12 lg:px-20 xl:px-28 2xl:px-40
-        py-10 sm:py-14 md:py-16 lg:py-20 xl:py-24
-        bg-gradient-to-br from-[#f3f6fa] via-[#eef2f7] to-[#e8edf5]
+        min-h-[85vh]
+        px-6 sm:px-10 md:px-16 lg:px-20 xl:px-32 2xl:px-44
+        py-14 sm:py-18 md:py-20 lg:py-24
+        bg-gradient-to-br from-[#c8d6f3] via-[#e4ebf8] to-[#f7f9fc]
+        overflow-hidden
       "
     >
-      {/* === Left Content === */}
-      <div
-        className="
-          flex flex-col items-start text-left
-          max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-[42rem] xl:max-w-[48rem]
-        "
-      >
-        {/* Heading */}
-        <h1
-          className="
-            font-bold text-gray-900 leading-snug mb-4 sm:mb-5 md:mb-6
-            text-3xl sm:text-4xl md:text-5xl xl:text-6xl
-          "
-        >
+      {/* === Dynamic gradient overlays === */}
+      <div className="absolute inset-0 -z-10">
+        {/* top-right highlight */}
+        <div className="absolute top-0 right-0 w-[60%] h-[60%] bg-gradient-to-bl from-[#f4f7ff]/60 to-transparent" />
+        {/* soft diagonal gradient for depth */}
+        <div className="absolute bottom-[-15%] left-[-10%] w-[700px] h-[700px] bg-gradient-to-tr from-[#2e4a7d]/25 via-[#607ea6]/15 to-transparent blur-3xl rounded-full" />
+        {/* faint grid pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.07]"
+          style={{
+            backgroundImage:
+              "linear-gradient(135deg, rgba(46,74,125,0.15) 1px, transparent 1px)",
+            backgroundSize: "26px 26px",
+          }}
+        />
+      </div>
+
+      {/* === Left content === */}
+      <div className="flex flex-col items-start text-left max-w-2xl lg:max-w-[42rem] xl:max-w-[48rem]">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#1b2b4f] mb-5 leading-tight">
           Language Biomarker Lab
         </h1>
 
-        {/* Paragraph */}
-        <p
-          className="
-            text-base sm:text-lg md:text-[1.1rem] xl:text-xl text-gray-700 leading-relaxed mb-6 sm:mb-8
-          "
-        >
-          The <strong>Language Biomarker Lab (LaBL)</strong> investigates how
-          linguistic signals reflect cognition and mental health. Our team
-          combines <strong>psychology</strong>, <strong>linguistics</strong>, and{" "}
-          <strong>artificial intelligence</strong> to identify measurable
+        <p className="text-lg md:text-xl font-medium text-[#2e4a7d] mb-6">
+          Exploring how language reveals cognition, emotion, and mental health.
+        </p>
+
+        <p className="text-base sm:text-lg md:text-[1.1rem] xl:text-xl text-gray-700 leading-relaxed mb-8">
+          The <strong>Language Biomarker Lab (LaBL)</strong> integrates{" "}
+          <strong>psychology</strong>, <strong>linguistics</strong>, and{" "}
+          <strong>artificial intelligence</strong> to uncover measurable
           indicators of cognitive and emotional processes.
         </p>
 
-        {/* Buttons */}
-        <div className="flex flex-wrap gap-3 sm:gap-4">
+        <div className="flex flex-wrap gap-4">
           <a
             href="/research"
-            className="
-              rounded-md bg-[#2e4a7d] text-white font-semibold
-              px-5 sm:px-6 md:px-7 py-2.5 sm:py-3
-              text-sm sm:text-base md:text-[1rem]
-              hover:bg-[#253a63] transition-colors duration-200
-            "
+            className="rounded-md bg-[#2e4a7d] text-white font-semibold px-6 py-3 shadow-md hover:bg-[#253a63] transition"
           >
             Explore Research
           </a>
           <a
             href="/people"
-            className="
-              rounded-md border border-[#2e4a7d] text-[#2e4a7d] font-semibold
-              px-5 sm:px-6 md:px-7 py-2.5 sm:py-3
-              text-sm sm:text-base md:text-[1rem]
-              hover:bg-[#2e4a7d]/10 transition-colors duration-200
-            "
+            className="rounded-md border border-[#2e4a7d] text-[#2e4a7d] font-semibold px-6 py-3 hover:bg-[#2e4a7d]/10 transition"
           >
             Meet the Team
           </a>
         </div>
       </div>
 
-      {/* === Right Hero Image === */}
-      <div
-        className="
-          mt-8 sm:mt-10 md:mt-12 lg:mt-0 lg:ml-10 xl:ml-16
-          flex justify-center lg:justify-end
-        "
-      >
+      {/* === Right visual === */}
+      <div className="relative mt-10 lg:mt-0 lg:ml-16">
+        <div className="absolute inset-0 bg-[#2e4a7d]/20 blur-3xl rounded-full scale-125" />
         <Image
           src="/labl-logo.png"
           alt="LaBL Symbol"
-          width={360}
-          height={360}
-          className="
-            w-[220px] sm:w-[280px] md:w-[340px] lg:w-[400px] xl:w-[460px]
-            h-auto rounded-xl border border-gray-300 shadow-md
-          "
+          width={420}
+          height={420}
+          className="relative rounded-xl shadow-lg border border-gray-200"
           priority
         />
       </div>
