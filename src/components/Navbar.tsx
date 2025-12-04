@@ -29,29 +29,26 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-200"
-          : "bg-white/70 backdrop-blur-sm border-b border-transparent"
+          ? "bg-gradient-to-r from-[#f3f6fa]/95 via-[#eef2f7]/95 to-[#e8edf5]/95 backdrop-blur-md shadow-sm border-b border-gray-200"
+          : "bg-gradient-to-r from-[#f3f6fa] via-[#eef2f7] to-[#e8edf5] border-b border-transparent"
       }`}
     >
       <nav className="flex flex-wrap items-center justify-between mx-auto max-w-[95%] sm:max-w-7xl px-4 sm:px-6 py-3 sm:py-4">
-        {/* === Elegant Shining Logo Section === */}
+        {/* === Logo === */}
         <Link href="/" className="relative flex items-center gap-2 group flex-shrink-0">
           <div className="relative flex items-center justify-center">
-            {/* Smooth pulsing ring glow */}
             <motion.div
-              className="absolute w-12 h-12 rounded-full bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 opacity-30 blur-md"
+              className="absolute w-12 h-12 rounded-full bg-gradient-to-r from-[#b6c2e5] via-[#c7c5e9] to-[#d8c7ea] opacity-30 blur-md"
               animate={{
-                scale: [1, 1.08, 1],
-                opacity: [0.2, 0.35, 0.2],
+                scale: [1, 1.05, 1],
+                opacity: [0.2, 0.3, 0.2],
               }}
               transition={{
-                duration: 3,
+                duration: 4,
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
             />
-
-            {/* Logo with light shimmer */}
             <div className="relative overflow-hidden rounded-md shadow-sm">
               <Image
                 src="/labl-logo.png"
@@ -60,35 +57,18 @@ export default function Navbar() {
                 height={42}
                 className="rounded-md transition-transform duration-300 group-hover:scale-105"
               />
-              {/* Light sweep shimmer */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
-                animate={{
-                  x: ["-150%", "150%"],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
             </div>
           </div>
 
-          {/* === LaBL Text with synchronized shimmer === */}
+          {/* LaBL text — softened gradient */}
           <motion.span
-            className="relative text-2xl font-extrabold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"
+            className="relative text-2xl font-extrabold bg-gradient-to-r from-[#495d88] via-[#5a639b] to-[#6f6aa8] bg-clip-text text-transparent"
             animate={{
               backgroundPositionX: ["0%", "100%"],
               opacity: [1, 0.95, 1],
-              textShadow: [
-                "0px 0px 0px rgba(147,51,234,0)",
-                "0px 0px 8px rgba(147,51,234,0.4)",
-                "0px 0px 0px rgba(147,51,234,0)",
-              ],
             }}
             transition={{
-              duration: 5,
+              duration: 8,
               repeat: Infinity,
               ease: "easeInOut",
             }}
@@ -110,15 +90,15 @@ export default function Navbar() {
                 href={item.href}
                 className={`relative transition-all duration-300 ${
                   isActive
-                    ? "text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 scale-105"
-                    : "text-gray-800 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-indigo-600 hover:via-purple-600 hover:to-pink-600 hover:scale-105"
+                    ? "text-transparent bg-clip-text bg-gradient-to-r from-[#495d88] via-[#5a639b] to-[#6f6aa8] scale-105"
+                    : "text-gray-800 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#495d88] hover:via-[#5a639b] hover:to-[#6f6aa8] hover:scale-105"
                 }`}
               >
                 {item.name}
                 {isActive && (
                   <motion.span
                     layoutId="nav-active"
-                    className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full"
+                    className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-[#9aa9d1] via-[#b3addc] to-[#c6b4e0] rounded-full"
                   />
                 )}
               </Link>
@@ -127,8 +107,8 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Decorative gradient line */}
-      <div className="h-[3px] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-70" />
+      {/* === Soft underline (matches site palette) === */}
+      <div className="h-[3px] bg-gradient-to-r from-[#b6c2e5] via-[#c7c5e9] to-[#d8c7ea] opacity-90" />
     </header>
   );
 }
