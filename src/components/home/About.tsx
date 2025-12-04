@@ -14,14 +14,14 @@ export default function About() {
 
   return (
     <section className="relative w-full bg-gradient-to-b from-[#e8edf5] via-[#f3f6fa] to-[#eef2f7] py-24 md:py-28 border-t border-gray-200 overflow-hidden">
-      {/* soft ambient gradient edges */}
-      <div className="absolute left-0 top-0 w-[25%] h-full bg-gradient-to-r from-[#e8edf5] via-transparent to-transparent pointer-events-none" />
-      <div className="absolute right-0 top-0 w-[25%] h-full bg-gradient-to-l from-[#e8edf5] via-transparent to-transparent pointer-events-none" />
+      {/* gradient sides for smooth edges */}
+      <div className="absolute left-0 top-0 w-[15%] h-full bg-gradient-to-r from-[#e8edf5] via-transparent to-transparent pointer-events-none" />
+      <div className="absolute right-0 top-0 w-[15%] h-full bg-gradient-to-l from-[#e8edf5] via-transparent to-transparent pointer-events-none" />
 
-      <div className="relative max-w-[90rem] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 xl:px-24 2xl:px-28 grid md:grid-cols-2 gap-10 sm:gap-12 md:gap-14 lg:gap-20 items-center">
-        {/* === Left Illustration === */}
-        <div className="flex justify-center">
-          <div className="relative w-[90%] sm:w-[85%] md:w-full max-w-[520px] rounded-3xl bg-white border border-gray-200 shadow-md overflow-hidden">
+      <div className="relative w-full px-4 sm:px-8 md:px-12 lg:px-20 xl:px-28 2xl:px-32 grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
+        {/* === Illustration === */}
+        <div className="flex justify-center md:justify-end w-full">
+          <div className="relative w-full max-w-[520px] rounded-3xl bg-white border border-gray-200 shadow-md overflow-hidden">
             <Image
               src="/about-illustration.png"
               alt="Language Biomarker Lab"
@@ -32,27 +32,22 @@ export default function About() {
           </div>
         </div>
 
-        {/* === Right Content === */}
-        <div className="max-w-xl lg:max-w-2xl">
+        {/* === Text Content === */}
+        <div className="max-w-[700px]">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-5 sm:mb-6 leading-tight">
             About the Language Biomarker Lab
           </h2>
           <p className="text-base sm:text-lg md:text-[1.1rem] text-gray-700 leading-relaxed mb-5">
-            Located in the{" "}
-            <strong>Department of Psychology at Emory University</strong>, and
-            directed by <strong>Dr. Phillip Wolff</strong>, the Language
-            Biomarker Lab explores how language reflects thought, cognition, and
-            mental health. We integrate psychology, linguistics, and computer
-            science to advance the science of language biomarkers.
+            Located in the <strong>Department of Psychology at Emory University</strong>, and directed by{" "}
+            <strong>Dr. Phillip Wolff</strong>, the Language Biomarker Lab explores how language reflects thought,
+            cognition, and mental health. We integrate psychology, linguistics, and computer science to advance the
+            science of language biomarkers.
           </p>
           <p className="text-gray-700 leading-relaxed mb-8">
-            Our collaborations include the <strong>NIH</strong>,{" "}
-            <strong>NIMH</strong>, and the{" "}
-            <strong>World Economic Forum</strong>, driving innovation in
-            computational mental health research and early detection of
-            psychiatric conditions.
+            Our collaborations include the <strong>NIH</strong>, <strong>NIMH</strong>, and the{" "}
+            <strong>World Economic Forum</strong>, driving innovation in computational mental health research and early
+            detection of psychiatric conditions.
           </p>
-
           <a
             href="https://linguistics.emory.edu"
             target="_blank"
@@ -64,7 +59,7 @@ export default function About() {
         </div>
       </div>
 
-      {/* === Partner Logos (Scroll) === */}
+      {/* === Partners === */}
       <div className="relative mt-24 md:mt-28 overflow-hidden border-t border-gray-200 pt-12">
         <div className="flex w-max animate-scrollSmooth gap-12 sm:gap-14 md:gap-16 px-6">
           {[...partners, ...partners].map((logo, i) => (
@@ -83,12 +78,11 @@ export default function About() {
           ))}
         </div>
 
-        {/* Edge gradients for polish */}
+        {/* side fades */}
         <div className="absolute left-0 top-0 w-48 h-full bg-gradient-to-r from-[#e8edf5] via-[#f3f6fa] to-transparent pointer-events-none" />
         <div className="absolute right-0 top-0 w-48 h-full bg-gradient-to-l from-[#e8edf5] via-[#f3f6fa] to-transparent pointer-events-none" />
       </div>
 
-      {/* Scroll Animation */}
       <style jsx global>{`
         @keyframes scrollSmooth {
           0% {
