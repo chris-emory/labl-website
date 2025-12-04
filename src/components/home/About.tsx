@@ -34,16 +34,14 @@ export default function About() {
             About the Language Biomarker Lab
           </h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
-            Located in the <strong>Department of Psychology at Emory University</strong>,
-            and directed by <strong>Dr. Phillip Wolff</strong>, the Language
-            Biomarker Lab explores how language reflects thought, cognition, and
-            mental health. We integrate psychology, linguistics, and computer
-            science to advance the science of language biomarkers.
+            Located in the <strong>Department of Psychology at Emory University</strong>, and directed by{" "}
+            <strong>Dr. Phillip Wolff</strong>, the Language Biomarker Lab explores how language reflects thought,
+            cognition, and mental health. We integrate psychology, linguistics, and computer science to advance the
+            science of language biomarkers.
           </p>
           <p className="text-gray-700 leading-relaxed mb-10">
-            Our collaborations include the <strong>NIH</strong>,{" "}
-            <strong>NIMH</strong>, and the <strong>World Economic Forum</strong>,
-            driving innovation in computational mental health research and early
+            Our collaborations include the <strong>NIH</strong>, <strong>NIMH</strong>, and the{" "}
+            <strong>World Economic Forum</strong>, driving innovation in computational mental health research and early
             detection of psychiatric conditions.
           </p>
 
@@ -60,7 +58,7 @@ export default function About() {
 
       {/* Partner Logos (Smooth Slide) */}
       <div className="relative mt-28 overflow-hidden border-t border-gray-200 pt-12">
-        <div className="flex w-max animate-scroll-smooth gap-16 px-6">
+        <div className="flex w-max animate-scrollSmooth gap-16 px-6">
           {[...partners, ...partners].map((logo, i) => (
             <div
               key={i}
@@ -77,25 +75,26 @@ export default function About() {
           ))}
         </div>
 
-        {/* Gradient edges for polish */}
+        {/* Gradient edges */}
         <div className="absolute left-0 top-0 w-48 h-full bg-gradient-to-r from-[#e8edf5] via-[#f3f6fa] to-transparent pointer-events-none" />
         <div className="absolute right-0 top-0 w-48 h-full bg-gradient-to-l from-[#e8edf5] via-[#f3f6fa] to-transparent pointer-events-none" />
-
-        {/* Continuous scroll animation */}
-        <style jsx global>{`
-          @keyframes scroll-smooth {
-            0% {
-              transform: translateX(0);
-            }
-            100% {
-              transform: translateX(-50%);
-            }
-          }
-          .animate-scroll-smooth {
-            animation: scroll-smooth 45s linear infinite;
-          }
-        `}</style>
       </div>
+
+      {/* Safe global CSS */}
+      <style jsx global>{`
+        @keyframes scrollSmooth {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+
+        .animate-scrollSmooth {
+          animation: scrollSmooth 45s linear infinite;
+        }
+      `}</style>
     </section>
   );
 }
